@@ -1,0 +1,17 @@
+<div class="form-control container">
+    <div>
+        <h1>Current Player: {{ player.name }}</h1>
+        <h1>Your Symbol : {{player.symbol}}</h1>
+
+        <h2 *ngIf="game.winner">The winner is: {{ game.winner }}
+        </h2>
+
+        <button class="button" *ngIf="game.winner" routerLink='/player' (click)="newGame()">Start new Game</button>
+
+        <main>
+            <app-square *ngFor="let squareValue of game.squares; let i = index" [value]="squareValue" (click)="gameService.makeMove(i)">
+
+            </app-square>
+        </main>
+    </div>
+</div>

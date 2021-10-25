@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="form-control">
+        <form #heroForm="ngForm">
+            <h1>{{'wellcome to the game!' | titlecase}}</h1>
+            <div class="player-name">
+                <label for="player-name" class="form-label">Enter your name: </label>
+                <br>
+                <input type="text" class="form-control" name="player-name" id="player-name" #nameForValidation="ngModel" required pattern=".*\S+.*" [(ngModel)]="player.name" placeholder="player name">
+                <div [hidden]="nameForValidation.valid || nameForValidation.pristine" class="alert alert-danger">
+                    Name is required
+                </div>
+            </div>
+
+            <p for="symbol" class="form-label">Choose your symbol: </p>
+
+            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                <div class="form-check">
+                    <input type="radio" class="btn-check" autocomplete="off" name="symbol" id="symbol1" value="X" required [(ngModel)]="player.symbol">
+                    <label class="btn btn-outline-primary" for="symbol1">X</label><br>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="btn-check" autocomplete="off" name="symbol" id="symbol2" value="O" required [(ngModel)]="player.symbol">
+                    <label for="symbol2" class="btn btn-outline-primary">O</label>
+                </div>
+            </div>
+        </form>
+        <button class="button " routerLink='/board' [disabled]="!heroForm.form.valid" (click)="startGame()">Start Game</button>
+    </div>
+</div>
